@@ -1,0 +1,26 @@
+<!--
+  @description       : HTML file for Grant Application form
+  @author            : Wishwa Sigera
+  @group             : 
+  @last modified on  : 06-24-2024
+  @last modified by  : Wishwa Sigera
+-->
+<template>
+    <lightning-card title={label.title}>
+        <div class="slds-m-around_medium">
+            <lightning-input label={label.first_name} name="firstName" value={firstName} onchange={handleInputChange} required></lightning-input>
+            <lightning-input label={label.last_name} name="lastName" value={lastName} onchange={handleInputChange} required></lightning-input>
+            <lightning-input label={label.phone} name="phone" value={phone} onchange={handleInputChange} required pattern="^(65\s[689]\d{7})$" message-when-pattern-mismatch={label.error_invalid_phone}></lightning-input>
+            <lightning-input label={label.postal_code} name="postalCode" value={postalCode} onchange={handleInputChange} required pattern="\d{6}" message-when-pattern-mismatch={label.error_invalid_postal_code}></lightning-input>
+            <lightning-input label={label.monthly_income} name="monthlyIncome" value={monthlyIncome} onchange={handleInputChange} required type="number" formatter="currency" step="0.01" 
+                class="slds-m-bottom_small">
+            </lightning-input>
+            <lightning-radio-group label={label.support_option} name="supportOption" options={supportOptions} value={supportOption} onchange={handleInputChange} required></lightning-radio-group>
+            <br/>
+            <lightning-button label={label.submit_btn} onclick={handleSubmit} class="slds-m-top_medium"></lightning-button>
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+        </div>
+    </lightning-card>
+</template>
